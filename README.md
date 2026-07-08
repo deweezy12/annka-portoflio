@@ -46,19 +46,19 @@ tsconfig.json
 
 ## Deployment
 
-Not yet configured — hosting will be decided in a later step. Once a
-target is chosen:
+The site is deployed to **GitHub Pages** with a custom domain
+(`annkafalk.com`, configured via `public/CNAME`).
 
-- **Custom domain / root path hosting** (Vercel, Netlify, most VPS setups):
-  no changes needed, `vite.config.ts` already defaults `base` to `/`.
-- **GitHub Pages project site** (e.g. `https://user.github.io/repo-name/`):
-  set `base: "/repo-name/"` in `vite.config.ts` (or pass `BASE_PATH` as an
-  env var at build time), and add a deploy step/workflow that uploads the
-  `dist/` folder via `actions/deploy-pages`.
-
-The `.github/workflows/ci.yml` workflow currently only validates that the
-project typechecks and builds successfully on every push/PR — it does not
-deploy anywhere yet.
+- `.github/workflows/ci.yml` validates that the project typechecks and
+  builds successfully on every push/PR.
+- `.github/workflows/deploy.yml` builds the site and deploys the `dist/`
+  folder to GitHub Pages on every push to `main`.
+- `vite.config.ts` keeps `base: "/"` since the site is served from a
+  custom domain at the root path (no GitHub Pages project subpath).
+- DNS for `annkafalk.com` is configured at the registrar (Squarespace
+  Domains) with 4 `A` records pointing at GitHub Pages' IPs
+  (`185.199.108.153`–`185.199.111.153`) and a `www` `CNAME` record
+  pointing at `deweezy12.github.io`.
 
 ## Content notes
 
