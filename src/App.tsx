@@ -183,7 +183,7 @@ export function App() {
               ))}
 
               <p className="annkafalk-sedcard__note">
-                Available for commercial beauty, fashion, sport, jewelry and
+                Available for commercial beauty, sport, jewelry and
                 lifestyle productions.
               </p>
             </div>
