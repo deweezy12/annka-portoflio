@@ -11,7 +11,8 @@ const NAV_LINKS = [
 ] as const;
 
 const PORTFOLIO_ORDER = [
-  6, 12, 18, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 19,
+  6, 12, 18, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 19, 21,
+  22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
 ] as const;
 const PORTFOLIO_IMAGES = PORTFOLIO_ORDER.map((imageNumber) =>
   asset(`images/portfolio-${String(imageNumber).padStart(2, "0")}.jpg`),
@@ -136,7 +137,7 @@ export function App() {
           <div className="annkafalk-page__shell annkafalk-hero__grid">
             <div className="annkafalk-hero__media">
               <img
-                src={asset("images/hero.jpg")}
+                src={PORTFOLIO_IMAGES[0]}
                 alt="Annka Falk portrait"
                 loading="eager"
               />
