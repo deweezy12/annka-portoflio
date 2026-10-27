@@ -9,3 +9,6 @@ Thumbs.db
 !.env.example
 
 *.tsbuildinfo
+
+# Full-size originals (not deployed)
+source-images/

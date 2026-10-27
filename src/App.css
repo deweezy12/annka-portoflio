@@ -363,38 +363,131 @@ a.annkafalk-btn--ghost:hover {
 }
 
 /* ---------- Polas ---------- */
-.annkafalk-polas__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+.annkafalk-polas {
+  --polas-gap: 14px;
+  --polas-cols: 4;
 }
 
-.annkafalk-polas__item {
+/* Year */
+.annkafalk-polas__year + .annkafalk-polas__year {
+  margin-top: 72px;
+}
+
+.annkafalk-polas__year-title {
+  font-size: 2.4rem;
+  font-weight: 400;
+  padding-bottom: 14px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--af-ink);
+}
+
+/* Month */
+.annkafalk-polas__month {
+  scroll-margin-top: 84px;
+}
+
+.annkafalk-polas__month + .annkafalk-polas__month {
+  margin-top: 48px;
+}
+
+.annkafalk-polas__month-head {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
 }
 
-.annkafalk-polas__frame {
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  background: var(--af-line);
+.annkafalk-polas__month-head h4 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.25rem;
 }
 
-.annkafalk-polas__frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(4%);
-}
-
-.annkafalk-polas__label {
+.annkafalk-polas__month-head span {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--af-muted);
-  text-align: center;
+}
+
+/* Row of Polas. Every item has the same width in every month (1/4 of the
+   row), so a month with 3 images lines up with a month with 7. */
+.annkafalk-polas__row {
+  display: flex;
+  gap: var(--polas-gap);
+}
+
+.annkafalk-polas__row--track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  outline-offset: 4px;
+}
+
+.annkafalk-polas__row--track::-webkit-scrollbar {
+  display: none;
+}
+
+.annkafalk-polas__item {
+  flex: 0 0
+    calc(
+      (100% - (var(--polas-cols) - 1) * var(--polas-gap)) / var(--polas-cols)
+    );
+  aspect-ratio: 2 / 3;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--af-line);
+  cursor: zoom-in;
+  scroll-snap-align: start;
+}
+
+.annkafalk-polas__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s ease;
+}
+
+.annkafalk-polas__item:hover img {
+  transform: scale(1.03);
+}
+
+/* Slider (months with more than 4 images) */
+.annkafalk-polas__slider {
+  position: relative;
+}
+
+.annkafalk-polas__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--af-line);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--af-ink);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.annkafalk-polas__arrow:hover {
+  background: var(--af-ink);
+  color: var(--af-bg);
+}
+
+.annkafalk-polas__arrow--prev {
+  left: -14px;
+}
+
+.annkafalk-polas__arrow--next {
+  right: -14px;
 }
 
 .annkafalk-polas__note {
@@ -473,6 +566,81 @@ a.annkafalk-btn--ghost:hover {
   color: var(--af-muted);
 }
 
+.annkafalk-footer__link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- Impressum modal ---------- */
+.annkafalk-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+  overflow-y: auto;
+  background: rgba(17, 17, 17, 0.6);
+}
+
+.annkafalk-modal__panel {
+  position: relative;
+  width: min(640px, 100%);
+  padding: 48px 40px;
+  background: var(--af-bg);
+  color: var(--af-ink);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.annkafalk-modal__panel h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.annkafalk-modal__panel h3 {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--af-muted);
+  margin: 28px 0 6px;
+}
+
+.annkafalk-modal__panel p {
+  margin: 0;
+}
+
+.annkafalk-modal__panel a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.annkafalk-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 10px;
+  border: 0;
+  background: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .annkafalk-hero__grid {
@@ -548,9 +716,21 @@ a.annkafalk-btn--ghost:hover {
     gap: 4px;
   }
 
-  .annkafalk-polas__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  .annkafalk-polas {
+    --polas-gap: 8px;
+    --polas-cols: 2;
+  }
+
+  .annkafalk-polas__year-title {
+    font-size: 1.9rem;
+  }
+
+  .annkafalk-polas__arrow--prev {
+    left: 4px;
+  }
+
+  .annkafalk-polas__arrow--next {
+    right: 4px;
   }
 
   .annkafalk-sedcard {
