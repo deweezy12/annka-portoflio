@@ -38,6 +38,7 @@ PRO = {
     "234A0694-Bearbeitet-1.jpg": 27, "234A0743-Bearbeitet-1.jpg": 28,
     "234A1161-Bearbeitet-2.jpg": 29, "234A1303-Bearbeitet.jpg": 30,
     "234A1459-Bearbeitet.jpg": 31, "234A1519-Bearbeitet-2.jpg": 32,
+    "234A1485-Bearbeitet.jpg": 33,
 }
 
 # Order inside a month: close-up -> full body, so months are easy to compare.
